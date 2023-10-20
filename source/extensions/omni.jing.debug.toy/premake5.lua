@@ -12,7 +12,7 @@ repo_build.prebuild_link {
 -- Build the C++ plugin that will be loaded by the extension.
 -- The plugin must implement the omni::ext::IExt interface to
 -- be automatically loaded by the extension system at startup.
-project_ext_plugin(ext, "omni.example.cpp.hello_world.plugin")
-    local plugin_name = "omni.example.cpp.hello_world"
+project_ext_plugin(ext, "omni.jing.debug.toy.plugin")
+    local plugin_name = "omni.jing.debug.toy"
     add_files("source", "plugins/"..plugin_name)
     includedirs { "plugins/"..plugin_name }

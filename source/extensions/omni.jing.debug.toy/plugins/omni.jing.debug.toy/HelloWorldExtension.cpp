@@ -22,12 +22,6 @@ CARB_PLUGIN_IMPL_DEPS(omni::kit::IApp)
 
 namespace omni
 {
-namespace example
-{
-namespace cpp
-{
-namespace hello_world
-{
 
 // When this extension is enabled, any class that derives from omni.ext.IExt
 // will be instantiated and 'onStartup(extId)' called. When the extension is
@@ -40,8 +34,13 @@ public:
         printf("ExampleCppHelloWorldExtension starting up (ext_id: %s).\n", extId);
 
         // try to crash with "free(): corrupted unsorted chunks"
-        char* ptr = (char*)malloc(4);
-        free(ptr + 6);
+        char* ptr = (char*)malloc(66666);
+        free(ptr);
+        ptr[66665] = 1;
+        printf("Did Kit crash?\n");
+
+        // int *arr = NULL;
+        // *arr = 0;
 
         // Get the app interface from the Carbonite Framework.
         if (omni::kit::IApp* app = carb::getFramework()->acquireInterface<omni::kit::IApp>())
@@ -66,7 +65,7 @@ public:
     {
         if (m_updateCounter % 1000 == 0)
         {
-            printf("Hello from the omni.example.cpp.hello_world extension! %d updates counted.\n", m_updateCounter);
+            printf("Hello from the omni.jing.debug.tool extension! %d updates counted.\n", m_updateCounter);
         }
         m_updateCounter++;
     }
@@ -77,12 +76,9 @@ private:
 };
 
 }
-}
-}
-}
 
-CARB_PLUGIN_IMPL(pluginImplDesc, omni::example::cpp::hello_world::ExampleCppHelloWorldExtension)
+CARB_PLUGIN_IMPL(pluginImplDesc, omni::ExampleCppHelloWorldExtension)
 
-void fillInterface(omni::example::cpp::hello_world::ExampleCppHelloWorldExtension& iface)
+void fillInterface(omni::ExampleCppHelloWorldExtension& iface)
 {
 }

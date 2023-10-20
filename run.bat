@@ -6,5 +6,5 @@ set CONFIG=release
     --enable omni.kit.browser.sample ^
     --/app/fastShutdown=true ^
     --/foundation/verifyOsVersion/enabled=false ^
-    --enable omni.example.cpp.hello_world ^
+    --enable omni.jing.debug.toy ^
     %*
