@@ -14,7 +14,7 @@
 #include <omni/ext/IExt.h>
 #include <omni/kit/IApp.h>
 
-const struct carb::PluginImplDesc pluginImplDesc = { "omni.example.cpp.hello_world.plugin",
+const struct carb::PluginImplDesc pluginImplDesc = { "omni.jing.debug.toy",
                                                      "An example C++ extension.", "NVIDIA",
                                                      carb::PluginHotReload::eEnabled, "dev" };
 
@@ -38,6 +38,10 @@ public:
     void onStartup(const char* extId) override
     {
         printf("ExampleCppHelloWorldExtension starting up (ext_id: %s).\n", extId);
+
+        // try to crash with "free(): corrupted unsorted chunks"
+        char* ptr = (char*)malloc(4);
+        free(ptr + 6);
 
         // Get the app interface from the Carbonite Framework.
         if (omni::kit::IApp* app = carb::getFramework()->acquireInterface<omni::kit::IApp>())

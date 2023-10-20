@@ -1,0 +1,1 @@
+call %~dp0\build.bat --release --build-only
