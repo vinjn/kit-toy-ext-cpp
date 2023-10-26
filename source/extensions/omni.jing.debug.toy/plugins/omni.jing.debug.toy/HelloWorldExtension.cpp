@@ -26,6 +26,8 @@ namespace omni
 // When this extension is enabled, any class that derives from omni.ext.IExt
 // will be instantiated and 'onStartup(extId)' called. When the extension is
 // later disabled, a matching 'onShutdown()' call will be made on the object.
+char* ptr;
+
 class ExampleCppHelloWorldExtension : public omni::ext::IExt
 {
 public:
@@ -34,9 +36,9 @@ public:
         printf("ExampleCppHelloWorldExtension starting up (ext_id: %s).\n", extId);
 
         // try to crash with "free(): corrupted unsorted chunks"
-        char* ptr = (char*)malloc(66666);
+        ptr = (char*)malloc(66666);
         free(ptr);
-        ptr[66665] = 1;
+
         printf("Did Kit crash?\n");
 
         // int *arr = NULL;
@@ -63,8 +65,10 @@ public:
 
     void onUpdate()
     {
-        if (m_updateCounter % 1000 == 0)
+        if (m_updateCounter % 100 == 0)
         {
+            free(ptr);
+
             printf("Hello from the omni.jing.debug.tool extension! %d updates counted.\n", m_updateCounter);
         }
         m_updateCounter++;

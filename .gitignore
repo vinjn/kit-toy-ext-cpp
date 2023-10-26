@@ -17,3 +17,4 @@ PACKAGE-DEPS.yaml
 # Internal CI/CD files.
 /.teamcity
 /tools/ci
+*.log
